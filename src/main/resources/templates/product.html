@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Product List</title>
+</head>
+<body>
+Product List (<span th:text="${productList.size}"></span>)
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>CODE</th>
+			<th>NAME</th>
+			<th>CREATED DATE</th>
+			<th>UPDATED DATE</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="product : ${productList}">
+			<td th:utext="${product.id}"></td>
+			<td th:utext="${product.code}"></td>
+			<td th:utext="${product.name}"></td>
+			<td th:utext="${product.createdDate}"></td>
+			<td th:utext="${product.updatedDate}"></td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
