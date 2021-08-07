@@ -21,12 +21,15 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	/**
+	 * View All Product Page
+	 */
 	@RequestMapping(value = { "/product" }, method = RequestMethod.GET)
-	public String viewProductPage(Model model) {
+	public String viewAllProductPage(Model model) {
 		LOG.info("Get Product List");
 		List<Product> productList = productService.findAll();
 		LOG.info("Product List Count: " + productList.size());
 		model.addAttribute("productList", productList);
-		return "product";
+		return "product/product";
 	}
 }
