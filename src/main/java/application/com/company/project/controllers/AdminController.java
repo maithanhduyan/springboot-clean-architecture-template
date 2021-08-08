@@ -14,22 +14,26 @@ import com.company.project.domain.product.entity.Product;
 import com.company.project.services.product.ProductService;
 
 @Controller
-public class ProductController {
+@RequestMapping("/admin")
+public class AdminController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ProductController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
+
+	@RequestMapping(value = { "/dashboard", "dashboard.html", "", "/" })
+	public String viewDashBoard() {
+		return "admin/index";
+	}
 
 	@Autowired
 	ProductService productService;
 
-	/**
-	 * View All Product Page
-	 */
-	@RequestMapping(value = { "/product" }, method = RequestMethod.GET)
-	public String viewAllProductPage(Model model) {
+	@RequestMapping(value = { "/products", "/products.html" }, method = RequestMethod.GET)
+	public String products(Model model) {
 		LOG.info("Get Product List");
 		List<Product> productList = productService.findAll();
 		LOG.info("Product List Count: " + productList.size());
 		model.addAttribute("productList", productList);
-		return "product/product";
+		return "admin/products";
 	}
+
 }

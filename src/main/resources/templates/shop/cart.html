@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/shop/layout/main :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #static-resources},
+                                                ~{:: #nav},
+                                                ~{:: #header},
+                                                ~{:: #sidebar},
+                                                ~{:: #main-content},  
+                                                ~{:: footer},
+                                                ~{:: #script}
+                                               )}">
+
+<head>
+    <title>Shopping Cart</title>
+
+    <th:block id="static-resources">
+        <!-- Custom styles for this page -->
+    </th:block>
+</head>
+
+<body>
+
+    <!-- Section-->
+    <section class="py-1" id="main-content">
+        <div class="container px-4 px-lg-5">
+            <div class="row ">
+                <div class="col-lg-8">
+                    <!-- Cart List -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">Cart</h5>
+                            <div class="row mb-4 border-top" th:each="orderDetail : ${orderDetails}">
+                                <div class="col-md-5  mt-4">
+                                    <img width="200" th:src="${orderDetail.product.imageURL}" />
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row mb-4">
+                                        <input type="hidden" class="product-id" th:value="${orderDetail.product.id}">
+                                        <h5 class="mt-4">[[${orderDetail.product.name}]]</h5>
+                                        <div class="col-md-7">
+                                            <div class="row mb-4">
+                                                [[${orderDetail.product.description}]]
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button"
+                                                    class="btn btn-outline-dark  btn-sm decrease-quantity"><i
+                                                        class="bi bi-dash"></i></button>
+                                                <button type="button"
+                                                    class="btn product-quantity">[[${orderDetail.quantity}]]</button>
+                                                <button type="button"
+                                                    class="btn btn-outline-dark  btn-sm increase-quantity"><i
+                                                        class="bi bi-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-4"><a class="btn btn-outline-dark  btn-sm remove-cart"><i
+                                                    class="bi bi-trash"></i> Remove</a></div>
+                                        <div class="col-md-4"><a class="btn btn-outline-dark btn-sm"><i
+                                                    class="bi bi-heart"></i> Wish List</a></div>
+                                        <div class="col-md-4"><strong
+                                                class="amount">[[${#numbers.formatDecimal(orderDetail.amount, 0,
+                                                'COMMA', 0, 'POINT')+'&#8363;'}]]</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3">The total amount of</h5>
+                            <div class="row mb-4">
+                                <div class="col-md-8">Temporary amount</div>
+                                <div class="col-md-4"><span class="temporary-amount"
+                                        th:text=" ${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 0, 'POINT')+'&#8363;'}">$53.98</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4 border-bottom">
+                                <div class="col-md-8">Shipping</div>
+                                <div class="col-md-4"><span>Gratis</span></div>
+                            </div>
+                            <div class="row mb-4 ">
+                                <div class="col-md-8">
+                                    <strong>The total amount of</strong>
+                                    <strong>
+                                        <p class="mb-0">(including VAT)</p>
+                                    </strong>
+                                </div>
+                                <div class="col-md-4"><strong class="total-amount"
+                                        th:text=" ${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 0, 'POINT')+'&#8363;'}">$53.98</strong>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <a class="btn btn-outline-dark btn-block">Check-out <i
+                                            class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. row -->
+        </div>
+    </section>
+
+
+    <th:block id="script">
+        <!-- Page level custom scripts -->
+    </th:block>
+
+</body>
+
+</html>
