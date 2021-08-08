@@ -15,12 +15,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+		
 		registry.addResourceHandler("/admin/js/**").addResourceLocations("classpath:/static/admin/js/");
 		registry.addResourceHandler("/admin/css/**").addResourceLocations("classpath:/static/admin/css/");
 		registry.addResourceHandler("/admin/img/**").addResourceLocations("classpath:/static/admin/img/");
+		
 		registry.addResourceHandler("/shop/css/**").addResourceLocations("classpath:/static/shop/css/");
 		registry.addResourceHandler("/shop/js/**").addResourceLocations("classpath:/static/shop/js/");
 		registry.addResourceHandler("/shop/assets/**").addResourceLocations("classpath:/static/shop/assets/");
+		
+		registry.addResourceHandler("/blog/css/**").addResourceLocations("classpath:/static/blog/css/");
+		registry.addResourceHandler("/blog/js/**").addResourceLocations("classpath:/static/blog/js/");
+		registry.addResourceHandler("/blog/assets/**").addResourceLocations("classpath:/static/blog/assets/");
+		
 		registry.addResourceHandler("/vendor/bootstrap/**").addResourceLocations("/webjars/bootstrap/4.4.1/");
 		registry.addResourceHandler("/vendor/jquery/**").addResourceLocations("/webjars/jquery/3.4.1/");
 		registry.addResourceHandler("/vendor/font-awesome/**").addResourceLocations("/webjars/font-awesome/5.13.0/");
