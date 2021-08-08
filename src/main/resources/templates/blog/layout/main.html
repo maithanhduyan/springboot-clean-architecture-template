@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="main-fragment (title, 
+	staticResources, 
+	navbar, 
+	header, 
+	sidebar, 
+	mainContent, 
+	footer , 
+	script)">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title th:replace="${title}">Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/blog/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/blog/css/styles.css" rel="stylesheet" />
+
+    <!--/* Other css source files! */-->
+    <th:block th:replace="${staticResources} ?: ~{}"></th:block>
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <th:block th:insert="~{/blog/fragments/nav :: default}"></th:block>
+    <!-- /.Responsive navbar-->
+
+    <!-- Page header with logo and tagline-->
+    <th:block th:insert="${header} ?: ~{}"></th:block>
+
+    <!-- Page content-->
+    <th:block th:insert="${mainContent} ?: ~{}"></th:block>
+
+    <!-- Footer-->
+    <th:block th:insert="~{/blog/fragments/footer :: default}"></th:block>
+    <!-- /.Footer-->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/blog/js/scripts.js"></script>
+
+    <th:block th:replace="${script} ?: ~{}"></th:block>
+</body>
+
+</html>
