@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Tạo Đơn hàng mới</title>
 </head>
+
 <body>
     <h1>Tạo Đơn hàng mới</h1>
+    <!-- Thêm phần chọn Customer -->
+    <label>Khách hàng:</label>
     <form th:action="@{/orders/new}" method="post">
+        <select name="customerId">
+            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+        </select>
+        <br />
         <table border="1">
             <tr>
-                <th>Sản phẩm</th><th>Giá</th><th>Số lượng</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
             </tr>
             <tr th:each="item : ${items}">
                 <td th:text="${item.name}">Tên Sản phẩm</td>
                 <td th:text="${item.price}">Giá</td>
                 <td>
                     <input type="hidden" name="itemIds" th:value="${item.id}" />
-                    <input type="number" name="quantities" value="0" min="0"/>
+                    <input type="number" name="quantities" value="0" min="0" />
                 </td>
             </tr>
         </table>
         <button type="submit">Tạo Đơn hàng</button>
     </form>
 </body>
+
 </html>

@@ -20,16 +20,25 @@ public class OrderController {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     @GetMapping("/new")
     public String showNewOrderForm(Model model) {
         model.addAttribute("items", itemRepository.findAll());
+        model.addAttribute("customers", customerRepository.findAll());
         return "new-order"; // Trả về template new-order.html
     }
 
     @PostMapping("/new")
-    public String createOrder(@RequestParam("itemIds") Long[] itemIds,
+    public String createOrder(
+            @RequestParam("customerId") Long customerId,
+            @RequestParam("itemIds") Long[] itemIds,
             @RequestParam("quantities") Integer[] quantities) {
+
         Order order = new Order();
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        order.setCustomer(customer);
         orderRepository.save(order); // Lưu Order trước để có ID
 
         for (int i = 0; i < itemIds.length; i++) {
@@ -47,6 +56,7 @@ public class OrderController {
 
     @GetMapping
     public String listOrders(Model model) {
+        
         model.addAttribute("orders", orderRepository.findAll());
         return "orders"; // Trả về template orders.html
     }

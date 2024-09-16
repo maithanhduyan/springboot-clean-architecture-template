@@ -13,6 +13,7 @@
         </tr>
         <tr th:each="order : ${orders}">
             <td th:text="${order.id}">1</td>
+            <td th:text="${order.customer.name}">1</td>
             <td th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}">Ngày</td>
             <td><a th:href="@{'/orders/' + ${order.id}}">Xem Chi tiết</a></td>
         </tr>

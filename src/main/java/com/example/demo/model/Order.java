@@ -16,7 +16,11 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    
     // Constructors
     public Order() {
         this.date = new Date();
@@ -44,6 +48,14 @@ public class Order {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 }

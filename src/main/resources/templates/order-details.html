@@ -8,6 +8,7 @@
 <body>
     <a href="#" onclick="history.back()">Back</a> &nbsp;
     <h1>Chi tiết Đơn hàng #<span th:text="${order.id}"></span></h1>
+    <p th:text="${'Khách hàng:' + order.customer.name}"><span></span></p>
     <p>Ngày: <span th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
     <table border="1">
         <tr>
