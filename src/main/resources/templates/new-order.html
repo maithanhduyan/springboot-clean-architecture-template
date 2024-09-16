@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tạo Đơn hàng mới</title>
+</head>
+<body>
+    <h1>Tạo Đơn hàng mới</h1>
+    <form th:action="@{/orders/new}" method="post">
+        <table border="1">
+            <tr>
+                <th>Sản phẩm</th><th>Giá</th><th>Số lượng</th>
+            </tr>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.name}">Tên Sản phẩm</td>
+                <td th:text="${item.price}">Giá</td>
+                <td>
+                    <input type="hidden" name="itemIds" th:value="${item.id}" />
+                    <input type="number" name="quantities" value="0" min="0"/>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Tạo Đơn hàng</button>
+    </form>
+</body>
+</html>

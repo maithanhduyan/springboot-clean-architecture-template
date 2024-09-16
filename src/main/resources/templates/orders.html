@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Đơn hàng</title>
+</head>
+<body>
+    <h1>Danh sách Đơn hàng</h1>
+    <a href="/" >Home</a> &nbsp;
+    <a href="/orders/new">Tạo Đơn hàng mới</a>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>Ngày</th><th>Chi tiết</th>
+        </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}">1</td>
+            <td th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}">Ngày</td>
+            <td><a th:href="@{'/orders/' + ${order.id}}">Xem Chi tiết</a></td>
+        </tr>
+    </table>
+</body>
+</html>
