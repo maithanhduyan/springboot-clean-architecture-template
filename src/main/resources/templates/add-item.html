@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm Sản phẩm</title>
+</head>
+<body>
+    <h1>Thêm Sản phẩm mới</h1>
+    <form th:action="@{/items/add}" method="post" th:object="${item}">
+        <label>Tên:</label>
+        <input type="text" th:field="*{name}" /><br/>
+        <label>Giá:</label>
+        <input type="number" th:field="*{price}" step="0.01" /><br/>
+        <button type="submit">Lưu</button>
+    </form>
+</body>
+</html>

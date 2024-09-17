@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Khách hàng</title>
+</head>
+<body>
+    <h1>Danh sách Khách hàng</h1>
+    <a href="/">Home</a> &nbsp;
+    <a href="/customers/add">Thêm Khách hàng mới</a>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>Tên</th><th>Email</th><th>Số điện thoại</th>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}">1</td>
+            <td th:text="${customer.name}">Tên</td>
+            <td th:text="${customer.email}">Email</td>
+            <td th:text="${customer.phone}">SĐT</td>
+        </tr>
+    </table>
+</body>
+</html>
