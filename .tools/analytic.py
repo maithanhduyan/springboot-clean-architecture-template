@@ -12,11 +12,16 @@ def collect_files(root_dir, extensions, filenames):
 def write_markdown(files, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
         for filepath in files:
+            f.write(f'Ta có dự án spring boot như sau: \n\n')
+
             f.write(f'# {filepath}\n\n')
             f.write('```\n')
             with open(filepath, 'r', encoding='utf-8') as file_content:
                 f.write(file_content.read())
             f.write('\n```\n\n')
+
+
+            # f.write(f'Thêm chức năng json restful api vào hệ thống\n\n')
 
 if __name__ == '__main__':
     root_dir = '../'

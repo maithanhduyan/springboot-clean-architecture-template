@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +9,22 @@
 </head>
 
 <body>
-Bán Hàng (POS)
-<br>
-<a href="/items">Sản Phẩm</a>
-<br>
-<a href="/orders">Đơn Hàng</a>
-<br>
-<a href="/customers">Khách Hàng</a>
+    Bán Hàng (POS)
+    <br>
+    <div th:if="${#authentication?.name != null}">
+        <h1>Chào mừng, <span th:text="${#authentication.name}"></span>!</h1>
+        <!-- Nội dung cho người dùng đã đăng nhập -->
+    </div>
+    <div th:unless="${#authentication?.name != null}">
+        <h1>Chào mừng, Khách!</h1>
+        <p><a th:href="@{/login}">Đăng nhập</a> hoặc <a th:href="@{/register}">Đăng ký</a> để tiếp tục.</p>
+    </div>
+    <br>
+    <a href="/items">Sản Phẩm</a>
+    <br>
+    <a href="/orders">Đơn Hàng</a>
+    <br>
+    <a href="/customers">Khách Hàng</a>
 </body>
 
 </html>
